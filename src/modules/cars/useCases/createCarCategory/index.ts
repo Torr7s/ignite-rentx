@@ -2,10 +2,12 @@ import { CarCategoriesRepository } from '../../repositories/implementations/CarC
 import { CreateCarCategoryUseCase } from './CreateCarCategoryUseCase';
 import { CreateCarCategoryController } from './CreateCarCategoryController';
 
-const carCategoriesRepository = CarCategoriesRepository.getInstance()
+export default (): CreateCarCategoryController => {
+  const carCategoriesRepository = new CarCategoriesRepository()
 
-const createCarCategoryUseCase = new CreateCarCategoryUseCase(carCategoriesRepository)
+  const createCarCategoryUseCase = new CreateCarCategoryUseCase(carCategoriesRepository)
 
-const createCarCategoryController = new CreateCarCategoryController(createCarCategoryUseCase)
+  const createCarCategoryController = new CreateCarCategoryController(createCarCategoryUseCase)
 
-export { createCarCategoryController }
+  return createCarCategoryController
+}

@@ -1,4 +1,4 @@
-import { CarSpecificationModel } from '../../models/CarSpecificationModel';
+import { CarSpecificationEntity } from '../../entities/CarSpecificationEntity';
 
 import { ICarSpecificationsRepository } from '../../repositories/CarSpecificationsInterface';
 
@@ -9,14 +9,14 @@ interface ICarSpecificationRequest {
 
 class CreateCarSpecificationUseCase {
   constructor(
-    private _carSpecificationsRepository: ICarSpecificationsRepository
+    private _specificationsRepository: ICarSpecificationsRepository
   ) { }
 
-  perform({ name, description }: ICarSpecificationRequest): void {
-    const carSpecificationData: CarSpecificationModel = this._carSpecificationsRepository.findByName(name)
+  async perform({ name, description }: ICarSpecificationRequest): Promise<void> {
+    const specificationData: CarSpecificationEntity = await this._specificationsRepository.findByName(name)
 
-    if (!carSpecificationData) {
-      this._carSpecificationsRepository.create({
+    if (!specificationData) {
+      this._specificationsRepository.create({
         name,
         description
       })

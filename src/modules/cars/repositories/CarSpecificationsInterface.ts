@@ -1,4 +1,4 @@
-import { CarSpecificationModel } from '../models/CarSpecificationModel';
+import { CarSpecificationEntity } from '../entities/CarSpecificationEntity';
 
 interface ICreateCarSpecificationDto {
   name: string;
@@ -6,8 +6,8 @@ interface ICreateCarSpecificationDto {
 }
 
 interface ICarSpecificationsRepository {
-  create({ name, description }: ICreateCarSpecificationDto);
-  findByName(name: string): CarSpecificationModel;
+  create({ name, description }: ICreateCarSpecificationDto): Promise<void>;
+  findByName(name: string): Promise<CarSpecificationEntity>;
 }
 
 export { ICreateCarSpecificationDto, ICarSpecificationsRepository }

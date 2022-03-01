@@ -1,43 +1,34 @@
-import { CarCategoryModel } from '../../models/CarCategoryModel';
+import { getRepository, Repository } from 'typeorm';
+import { CarCategoryEntity } from '../../entities/CarCategoryEntity';
 
 import { ICreateCarCategoryDto, ICarCategoriesRepository } from '../CarCategoriesInterface';
 
 class CarCategoriesRepository implements ICarCategoriesRepository{
-  private _carCategories: CarCategoryModel[]
-  private static _instance: CarCategoriesRepository
+  private _categoryRepository: Repository<CarCategoryEntity>
 
-  private constructor() {
-    this._carCategories = []
+  constructor() { 
+    this._categoryRepository = getRepository(CarCategoryEntity)
   } 
 
-  public static getInstance(): CarCategoriesRepository {
-    if (!CarCategoriesRepository._instance) {
-      CarCategoriesRepository._instance = new CarCategoriesRepository()
-    }
-
-    return CarCategoriesRepository._instance
-  }
-
-  create({ name, description }: ICreateCarCategoryDto): void {
-    const category = new CarCategoryModel()
-
-    Object.assign(category, {
-      name, 
-      description, 
-      created_at: new Date() 
+  async create({ name, description }: ICreateCarCategoryDto): Promise<void> {
+    const newCategoryData: CarCategoryEntity = this._categoryRepository.create({
+      name,
+      description
     })
-  
-    this._carCategories.push(category)
+
+    await this._categoryRepository.save(newCategoryData)
   }
 
-  list(): CarCategoryModel[] {
-    return this._carCategories
-  }
-
-  findByName(name: string): CarCategoryModel {
-    const category = this._carCategories.find((category) => category.name === name)
+  async list(): Promise<CarCategoryEntity[]> {
+    const categoriesData: CarCategoryEntity[] = await this._categoryRepository.find()
     
-    return category
+    return categoriesData
+  }
+
+  async findByName(name: string): Promise<CarCategoryEntity> {
+    const categoryData: CarCategoryEntity = await this._categoryRepository.findOne({ name })
+
+    return categoryData
   }
 }
 

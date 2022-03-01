@@ -7,10 +7,10 @@ class CreateCarSpecificationController {
     private _createCarSpecificationUseCase: CreateCarSpecificationUseCase
   ) { }
 
-  handle(request: Request, response: Response): Response {
+  async handle(request: Request, response: Response): Promise<Response> {
     const { name, description } = request.body
 
-    this._createCarSpecificationUseCase.perform({ name, description })
+    await this._createCarSpecificationUseCase.perform({ name, description })
 
     return response.sendStatus(201)
   }

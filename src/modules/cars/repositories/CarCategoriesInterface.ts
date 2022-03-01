@@ -1,4 +1,4 @@
-import { CarCategoryModel } from '../models/CarCategoryModel';
+import { CarCategoryEntity } from '../entities/CarCategoryEntity';
 
 /**
  * DTO - Data Transfer Object
@@ -13,9 +13,9 @@ interface ICreateCarCategoryDto {
 }
 
 interface ICarCategoriesRepository {
-  create({ name, description }: ICreateCarCategoryDto);
-  list(): CarCategoryModel[];
-  findByName(name: string): CarCategoryModel;
+  create({ name, description }: ICreateCarCategoryDto): Promise<void>;
+  list(): Promise<CarCategoryEntity[]>;
+  findByName(name: string): Promise<CarCategoryEntity>;
 }
 
 export { ICreateCarCategoryDto, ICarCategoriesRepository }

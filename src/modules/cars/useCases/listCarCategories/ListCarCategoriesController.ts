@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { CarCategoryModel } from '../../models/CarCategoryModel';
+import { CarCategoryEntity } from '../../entities/CarCategoryEntity';
 
 import { ListCarCategoriesUseCase } from './ListCarCategoriesUseCase';
 
@@ -9,8 +9,8 @@ class ListCarCategoriesController {
     private _listCarCategoriesUseCase: ListCarCategoriesUseCase
   ) { }
 
-  handle(request: Request, response: Response): Response {
-    const categories: CarCategoryModel[] = this._listCarCategoriesUseCase.perform()
+  async handle(request: Request, response: Response): Promise<Response> {
+    const categories: CarCategoryEntity[] = await this._listCarCategoriesUseCase.perform()
 
     return response.json(categories)
   }

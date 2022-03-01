@@ -1,4 +1,4 @@
-import { CarCategoryModel } from '../../models/CarCategoryModel';
+import { CarCategoryEntity } from '../../entities/CarCategoryEntity';
 
 import { ICarCategoriesRepository } from '../../repositories/CarCategoriesInterface';
 
@@ -9,19 +9,19 @@ interface ICarCategoryRequest {
 
 class CreateCarCategoryUseCase {
   constructor(
-    private _carCategoriesRepository: ICarCategoriesRepository
+    private _categoriesRepository: ICarCategoriesRepository
   ) { }
 
-  perform({ name, description }: ICarCategoryRequest): void { 
-    const carCategory: CarCategoryModel = this._carCategoriesRepository.findByName(name)
+  async perform({ name, description }: ICarCategoryRequest): Promise<void> { 
+    const categoryData: CarCategoryEntity = await this._categoriesRepository.findByName(name)
 
-    if (carCategory) {
+    if (categoryData) {
       throw new Error(
         'Car category already exists!'
       )
     }
   
-    this._carCategoriesRepository.create({ name, description })
+    this._categoriesRepository.create({ name, description })
   }
 }
 

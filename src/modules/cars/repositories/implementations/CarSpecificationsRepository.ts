@@ -1,30 +1,28 @@
-import { CarSpecificationModel } from '../../models/CarSpecificationModel';
+import { getRepository, Repository } from 'typeorm';
+import { CarSpecificationEntity } from '../../entities/CarSpecificationEntity';
 
 import { ICreateCarSpecificationDto, ICarSpecificationsRepository } from '../CarSpecificationsInterface';
 
 class CarSpecificationsRepository implements ICarSpecificationsRepository {
-  private _carSpecifications: CarSpecificationModel[]
-
+  private _specificationRepository: Repository<CarSpecificationEntity>
+  
   constructor() { 
-    this._carSpecifications = []
+    this._specificationRepository = getRepository(CarSpecificationEntity)
   }
 
-  create({ name, description }: ICreateCarSpecificationDto) {
-    const specification = new CarSpecificationModel()
-    
-    Object.assign(specification, {
+  async create({ name, description }: ICreateCarSpecificationDto): Promise<void> {
+    const newSpecificationData: CarSpecificationEntity = this._specificationRepository.create({
       name,
-      description,
-      created_at: new Date()
+      description
     })
 
-    this._carSpecifications.push(specification)
+    await this._specificationRepository.save(newSpecificationData)
   }
 
-  findByName(name: string): CarSpecificationModel {
-    const specification = this._carSpecifications.find((spec) => spec.name === name)
+  async findByName(name: string): Promise<CarSpecificationEntity> {
+    const specificationData: CarSpecificationEntity = await this._specificationRepository.findOne({ name })
 
-    return specification
+    return specificationData
   }
 }
 

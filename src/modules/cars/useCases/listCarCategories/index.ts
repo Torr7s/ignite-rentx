@@ -2,7 +2,7 @@ import { CarCategoriesRepository } from '../../repositories/implementations/CarC
 import { ListCarCategoriesController } from './ListCarCategoriesController';
 import { ListCarCategoriesUseCase } from './ListCarCategoriesUseCase';
 
-const carCategoriesRepository = CarCategoriesRepository.getInstance()
+const carCategoriesRepository = null
 
 const listCarCategoriesUseCase = new ListCarCategoriesUseCase(carCategoriesRepository)
 
