@@ -14,12 +14,10 @@ export class CreateCarCategories1646143630536 implements MigrationInterface {
           {
             name: 'name',
             type: 'varchar',
-            isUnique: true
           },
           {
             name: 'description',
             type: 'varchar',
-            isUnique: true
           },
           {
             name: 'created_at',
