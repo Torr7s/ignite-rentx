@@ -4,29 +4,29 @@ import { CarCategoryEntity } from '../../entities/CarCategoryEntity';
 import { ICreateCarCategoryDto, ICarCategoriesRepository } from '../CarCategoriesInterface';
 
 class CarCategoriesRepository implements ICarCategoriesRepository{
-  private _categoryRepository: Repository<CarCategoryEntity>
+  private _categoriesRepository: Repository<CarCategoryEntity>
 
   constructor() { 
-    this._categoryRepository = getRepository(CarCategoryEntity)
+    this._categoriesRepository = getRepository(CarCategoryEntity)
   } 
 
   async create({ name, description }: ICreateCarCategoryDto): Promise<void> {
-    const newCategoryData: CarCategoryEntity = this._categoryRepository.create({
+    const newCategoryData: CarCategoryEntity = this._categoriesRepository.create({
       name,
       description
     })
 
-    await this._categoryRepository.save(newCategoryData)
+    await this._categoriesRepository.save(newCategoryData)
   }
 
   async list(): Promise<CarCategoryEntity[]> {
-    const categoriesData: CarCategoryEntity[] = await this._categoryRepository.find()
+    const categoriesData: CarCategoryEntity[] = await this._categoriesRepository.find()
     
     return categoriesData
   }
 
   async findByName(name: string): Promise<CarCategoryEntity> {
-    const categoryData: CarCategoryEntity = await this._categoryRepository.findOne({ name })
+    const categoryData: CarCategoryEntity = await this._categoriesRepository.findOne({ name })
 
     return categoryData
   }

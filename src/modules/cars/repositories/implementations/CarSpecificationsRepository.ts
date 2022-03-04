@@ -4,23 +4,23 @@ import { CarSpecificationEntity } from '../../entities/CarSpecificationEntity';
 import { ICreateCarSpecificationDto, ICarSpecificationsRepository } from '../CarSpecificationsInterface';
 
 class CarSpecificationsRepository implements ICarSpecificationsRepository {
-  private _specificationRepository: Repository<CarSpecificationEntity>
+  private _specificationsRepository: Repository<CarSpecificationEntity>
   
   constructor() { 
-    this._specificationRepository = getRepository(CarSpecificationEntity)
+    this._specificationsRepository = getRepository(CarSpecificationEntity)
   }
 
   async create({ name, description }: ICreateCarSpecificationDto): Promise<void> {
-    const newSpecificationData: CarSpecificationEntity = this._specificationRepository.create({
+    const newSpecificationData: CarSpecificationEntity = this._specificationsRepository.create({
       name,
       description
     })
 
-    await this._specificationRepository.save(newSpecificationData)
+    await this._specificationsRepository.save(newSpecificationData)
   }
 
   async findByName(name: string): Promise<CarSpecificationEntity> {
-    const specificationData: CarSpecificationEntity = await this._specificationRepository.findOne({ name })
+    const specificationData: CarSpecificationEntity = await this._specificationsRepository.findOne({ name })
 
     return specificationData
   }
