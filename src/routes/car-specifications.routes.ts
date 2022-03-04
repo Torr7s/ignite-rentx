@@ -2,10 +2,10 @@ import { Request, Response, Router } from 'express';
 
 const carSpecificationRouter = Router()
 
-import { createCarSpecificationController } from '../modules/cars/useCases/createCarSpecification';
+import { CreateCarSpecificationController } from '../modules/cars/useCases/createCarSpecification/CreateCarSpecificationController';
 
-carSpecificationRouter.post('/', (request: Request, response: Response) => {
-  return createCarSpecificationController.handle(request, response)
-})
+const CreateCarSpecificationHandler = new CreateCarSpecificationController().handle
+
+carSpecificationRouter.post('/', CreateCarSpecificationHandler)
 
 export { carSpecificationRouter }
