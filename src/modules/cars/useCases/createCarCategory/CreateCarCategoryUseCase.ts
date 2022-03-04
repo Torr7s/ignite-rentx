@@ -1,3 +1,5 @@
+import { inject, injectable } from 'tsyringe';
+
 import { CarCategoryEntity } from '../../entities/CarCategoryEntity';
 
 import { ICarCategoriesRepository } from '../../repositories/CarCategoriesInterface';
@@ -7,8 +9,10 @@ interface ICarCategoryRequest {
   description: string;
 }
 
+@injectable()
 class CreateCarCategoryUseCase {
   constructor(
+    @inject('CarCategoriesRepository')
     private _categoriesRepository: ICarCategoriesRepository
   ) { }
 

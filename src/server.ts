@@ -1,5 +1,8 @@
-import './database';
 import 'reflect-metadata';
+import 'express-async-errors';
+
+import './database';
+import './shared/container';
 
 import { app } from './app';
 
