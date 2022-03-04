@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "RentalX Documentation",
+    "title": "RentX Documentation",
     "description": "This is an API Rent",
     "version": "1.0.0",
     "contact": {
@@ -10,8 +10,36 @@
   },
   "paths": {
     "/car/categories": {
+      "get": {
+        "tags": ["Categories"],
+        "summary": "List all car categories",
+        "description": "List all car categories",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "post": {
-        "tags": ["Category"],
+        "tags": ["Categories"],
         "summary": "Create car category",
         "description": "Create a new car category",
         "requestBody": {
@@ -43,33 +71,69 @@
             "description": "Category already exists"
           }
         }
-      },
-      "get": {
-        "tags": ["Category"],
-        "summary": "List all car categories",
-        "description": "List all car categories",
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "description": {
-                        "type": "string"
-                      }
-                    }
+      }
+    },
+    "/car/categories/import": {
+      "post": {
+        "tags": ["Categories"],
+        "summary": "Import car categories",
+        "description": "Import new car categories from file",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
                   }
                 }
               }
             }
           }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/car/specifications": {
+      "post": {
+        "tags": ["Specifications"],
+        "summary": "Create car specification",
+        "description": "Create a new car specification",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/specifications"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Specification already exists!"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "specifications": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
         }
       }
     }
