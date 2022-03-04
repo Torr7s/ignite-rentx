@@ -12,7 +12,7 @@ class CarCategoryEntity {
   @Column()
   description: string
 
-  @CreateDateColumn()
+  @CreateDateColumn({ default: Date.now() })
   created_at: Date
 
   constructor() {
