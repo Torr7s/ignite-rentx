@@ -4,6 +4,8 @@ import { CarCategoryEntity } from '../../entities/CarCategoryEntity';
 
 import { ICarCategoriesRepository } from '../../repositories/CarCategoriesInterface';
 
+import { AppError } from '../../../../errors/app.error';
+
 interface ICarCategoryRequest {
   name: string;
   description: string;
@@ -20,12 +22,12 @@ class CreateCarCategoryUseCase {
     const categoryData: CarCategoryEntity = await this._categoriesRepository.findByName(name)
 
     if (categoryData) {
-      throw new Error(
+      throw new AppError(
         'Car category already exists!'
       )
     }
   
-    this._categoriesRepository.create({ name, description })
+    await this._categoriesRepository.create({ name, description })
   }
 }
 

@@ -4,6 +4,8 @@ import { CarSpecificationEntity } from '../../entities/CarSpecificationEntity';
 
 import { ICarSpecificationsRepository } from '../../repositories/CarSpecificationsInterface';
 
+import { AppError } from '../../../../errors/app.error';
+
 interface ICarSpecificationRequest {
   name: string;
   description: string;
@@ -20,7 +22,7 @@ class CreateCarSpecificationUseCase {
     const specificationData: CarSpecificationEntity = await this._specificationsRepository.findByName(name)
 
     if (specificationData) {
-      throw new Error(
+      throw new AppError(
         'Car specification already exists!'
       )
     }
