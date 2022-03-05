@@ -36,8 +36,6 @@ async function AuthUserMiddleware(request: Request, response: Response, next: Ne
       )
     }
 
-    request.user_id = user_id.toString()
-
     return next()
   } catch (error) {
     throw new AppError(
