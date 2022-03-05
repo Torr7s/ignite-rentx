@@ -1,4 +1,5 @@
 import { getRepository, Repository } from 'typeorm';
+
 import { CarCategoryEntity } from '../../entities/CarCategoryEntity';
 
 import { ICreateCarCategoryDto, ICarCategoriesRepository } from '../CarCategoriesInterface';
