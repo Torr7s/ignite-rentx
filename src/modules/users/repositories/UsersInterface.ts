@@ -6,6 +6,7 @@ interface IUsersRepository {
   create(data: ICreateUserDto): Promise<void>;
   findByEmail(email: string): Promise<UserEntity>;
   findById(id: string): Promise<UserEntity>;
+  updateAvatar(id: string, avatar_file: string): Promise<UserEntity>
 }
 
 export { IUsersRepository }
