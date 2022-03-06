@@ -10,6 +10,9 @@ class UserEntity {
   name: string
 
   @Column()
+  avatar: string
+
+  @Column()
   email: string
 
   @Column()
