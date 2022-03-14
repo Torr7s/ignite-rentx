@@ -40,7 +40,7 @@ class UsersRepository implements IUsersRepository {
     return userData
   }
 
-  async updateAvatar(id: string, avatar_file: string) {
+  async updateAvatar(id: string, avatar_file: string): Promise<UserEntity> {
     const userData: UserEntity = await this.findById(id)
     
     userData.avatar = avatar_file
