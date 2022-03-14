@@ -1,11 +1,11 @@
 import swaggerUI from 'swagger-ui-express';
 import swaggerFile from './swagger.json';
 
-import { router } from './routes';
+import { router } from './shared/infra/http/routes';
 
 import express, { NextFunction, Request, Response } from 'express';
 
-import { AppError } from '@errors/app.error';
+import { AppError } from '@shared/errors/app.error';
 
 const app = express()
 

@@ -1,4 +1,4 @@
-import { AppError } from '@errors/app.error'
+import { AppError } from '@shared/errors/app.error'
 
 import { CreateUserUseCase } from '@modules/users/useCases/createUser/CreateUserUseCase'
 

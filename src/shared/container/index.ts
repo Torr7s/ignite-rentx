@@ -4,9 +4,9 @@ import { ICarCategoriesRepository } from '@modules/cars/repositories/CarCategori
 import { ICarSpecificationsRepository } from '@modules/cars/repositories/CarSpecificationsInterface';
 import { IUsersRepository } from '@modules/users/repositories/UsersInterface';
 
-import { CarCategoriesRepository } from '@modules/cars/repositories/implementations/CarCategoriesRepository';
-import { CarSpecificationsRepository } from '@modules/cars/repositories/implementations/CarSpecificationsRepository';
-import { UsersRepository } from '@modules/users/repositories/implementations/UsersRepository';
+import { CarCategoriesRepository } from '@modules/cars/infra/typeorm/repositories/CarCategoriesRepository';
+import { CarSpecificationsRepository } from '@modules/cars/infra/typeorm/repositories/CarSpecificationsRepository';
+import { UsersRepository } from '@modules/users/infra/repositories/UsersRepository';
 
 container.registerSingleton<ICarCategoriesRepository>(
   'CarCategoriesRepository',

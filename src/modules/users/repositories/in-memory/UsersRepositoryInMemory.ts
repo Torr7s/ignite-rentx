@@ -1,4 +1,4 @@
-import { UserEntity } from '@modules/users/entities/UserEntity';
+import { UserEntity } from '@modules/users/infra/typeorm/entities/UserEntity';
 import { ICreateUserDto } from '@modules/users/dtos/CreateUserDto';
 import { IUsersRepository } from '@modules/users/repositories/UsersInterface';
 

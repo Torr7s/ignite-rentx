@@ -2,11 +2,11 @@ import { inject, injectable } from 'tsyringe';
 
 import { hash } from 'bcrypt';
 
-import { UserEntity } from '@modules/users/entities/UserEntity';
+import { UserEntity } from '@modules/users/infra/typeorm/entities/UserEntity';
 import { ICreateUserDto } from '@modules/users/dtos/CreateUserDto';
 import { IUsersRepository } from '@modules/users/repositories/UsersInterface';
 
-import { AppError } from '@errors/app.error';
+import { AppError } from '@shared/errors/app.error';
 
 @injectable()
 class CreateUserUseCase {

@@ -1,9 +1,9 @@
 import { inject, injectable } from 'tsyringe';
 
-import { CarCategoryEntity } from '@modules/cars/entities/CarCategoryEntity';
+import { CarCategoryEntity } from '@modules/cars/infra/typeorm/entities/CarCategoryEntity';
 import { ICarCategoriesRepository } from '@modules/cars/repositories/CarCategoriesInterface';
 
-import { AppError } from '@errors/app.error';
+import { AppError } from '@shared/errors/app.error';
 
 interface ICarCategoryRequest {
   name: string;

@@ -1,4 +1,4 @@
-import { CarCategoryEntity } from '@modules/cars/entities/CarCategoryEntity';
+import { CarCategoryEntity } from '@modules/cars/infra/typeorm/entities/CarCategoryEntity';
 import { ICarCategoriesRepository, ICreateCarCategoryDto } from '@modules/cars/repositories/CarCategoriesInterface';
 
 class CarCategoriesRepositoryInMemory implements ICarCategoriesRepository {

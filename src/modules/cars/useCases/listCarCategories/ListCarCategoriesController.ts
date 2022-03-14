@@ -1,7 +1,7 @@
 import { container } from 'tsyringe';
 import { Request, Response } from 'express';
 
-import { CarCategoryEntity } from '@modules/cars/entities/CarCategoryEntity';
+import { CarCategoryEntity } from '@modules/cars/infra/typeorm/entities/CarCategoryEntity';
 
 import { ListCarCategoriesUseCase } from './ListCarCategoriesUseCase';
 

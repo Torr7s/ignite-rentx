@@ -1,9 +1,9 @@
 import { inject, injectable } from 'tsyringe';
 
-import { CarSpecificationEntity } from '@modules/cars/entities/CarSpecificationEntity';
+import { CarSpecificationEntity } from '@modules/cars/infra/typeorm/entities/CarSpecificationEntity';
 import { ICarSpecificationsRepository } from '@modules/cars/repositories/CarSpecificationsInterface';
 
-import { AppError } from '@errors/app.error';
+import { AppError } from '@shared/errors/app.error';
 
 interface ICarSpecificationRequest {
   name: string;
