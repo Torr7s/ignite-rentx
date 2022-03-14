@@ -48,21 +48,21 @@ class AuthUserUseCase {
       )
     }
 
-    const token = sign({}, process.env.MD5_HASH, {
+    const token = sign({}, `${process.env.MD5_HASH}`, {
       subject: userData.id,
       expiresIn: '1d'
     })
 
     const tokenData: IAuthUserResponse = {
+      token,
       userData: {
         name: userData.name,
         email: userData.password
-      },
-      token
+      }
     }
 
     return tokenData
   }
 }
 
-export { AuthUserUseCase }
+export { IAuthUserResponse, AuthUserUseCase }
