@@ -1,4 +1,4 @@
-import { CarCategoryEntity } from '../entities/CarCategoryEntity';
+import { CarCategoryEntity } from '@modules/cars/entities/CarCategoryEntity';
 
 /**
  * DTO - Data Transfer Object

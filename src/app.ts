@@ -5,7 +5,7 @@ import { router } from './routes';
 
 import express, { NextFunction, Request, Response } from 'express';
 
-import { AppError } from './errors/app.error';
+import { AppError } from '@errors/app.error';
 
 const app = express()
 

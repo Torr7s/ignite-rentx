@@ -1,8 +1,8 @@
 import { inject, injectable } from 'tsyringe';
 
-import { IUsersRepository } from '../../repositories/UsersInterface';
+import { IUsersRepository } from '@modules/users/repositories/UsersInterface';
 
-import { deleteFile } from '../../../../utils/file.util';
+import { deleteFile } from '@utils/file.util';
 
 interface IUpdateUserAvatarRequest {
   user_id: string;

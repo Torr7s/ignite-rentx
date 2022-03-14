@@ -1,6 +1,5 @@
-import { CarCategoryEntity } from '../../entities/CarCategoryEntity';
-
-import { ICarCategoriesRepository, ICreateCarCategoryDto } from '../CarCategoriesInterface';
+import { CarCategoryEntity } from '@modules/cars/entities/CarCategoryEntity';
+import { ICarCategoriesRepository, ICreateCarCategoryDto } from '@modules/cars/repositories/CarCategoriesInterface';
 
 class CarCategoriesRepositoryInMemory implements ICarCategoriesRepository {
   private categories: CarCategoryEntity[] = []

@@ -1,7 +1,6 @@
-import { UserEntity } from '../../entities/UserEntity';
-
-import { ICreateUserDto } from '../../dtos/CreateUserDto';
-import { IUsersRepository } from '../UsersInterface';
+import { UserEntity } from '@modules/users/entities/UserEntity';
+import { ICreateUserDto } from '@modules/users/dtos/CreateUserDto';
+import { IUsersRepository } from '@modules/users/repositories/UsersInterface';
 
 class UsersRepositoryInMemory implements IUsersRepository {
   private users: UserEntity[] = []

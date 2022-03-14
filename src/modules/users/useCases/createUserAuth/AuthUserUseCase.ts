@@ -3,11 +3,11 @@ import { sign } from 'jsonwebtoken';
 
 import { inject, injectable } from 'tsyringe';
 
-import { UserEntity } from '../../entities/UserEntity';
+import { UserEntity } from '@modules/users/entities/UserEntity';
 
-import { IUsersRepository } from '../../repositories/UsersInterface';
+import { IUsersRepository } from '@modules/users/repositories/UsersInterface';
 
-import { AppError } from '../../../../errors/app.error';
+import { AppError } from '@errors/app.error';
 
 interface IAuthUserRequest {
   email: string;

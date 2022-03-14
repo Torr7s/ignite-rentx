@@ -1,4 +1,4 @@
-import { CarSpecificationEntity } from '../entities/CarSpecificationEntity';
+import { CarSpecificationEntity } from '@modules/cars/entities/CarSpecificationEntity';
 
 interface ICreateCarSpecificationDto {
   name: string;

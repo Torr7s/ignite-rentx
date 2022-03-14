@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import 'express-async-errors';
 
 import './database';
-import './shared/container';
+import '@shared/container';
 
 import { app } from './app';
 

@@ -1,11 +1,10 @@
-import { AppError } from '../../../../../errors/app.error'
+import { AppError } from '@errors/app.error'
 
-import { AuthUserUseCase, IAuthUserResponse } from '../AuthUserUseCase'
-import { CreateUserUseCase } from '../../createUser/CreateUserUseCase'
+import { CreateUserUseCase } from '@modules/users/useCases/createUser/CreateUserUseCase'
 
-import { UsersRepositoryInMemory } from '../../../repositories/in-memory/UsersRepositoryInMemory'
-
-import { ICreateUserDto } from '../../../dtos/CreateUserDto'
+import { AuthUserUseCase, IAuthUserResponse } from '@modules/users/useCases/createUserAuth/AuthUserUseCase'
+import { UsersRepositoryInMemory } from '@modules/users/repositories/in-memory/UsersRepositoryInMemory'
+import { ICreateUserDto } from '@modules/users/dtos/CreateUserDto'
 
 let usersRepositoryInMemory: UsersRepositoryInMemory
 let authUserUseCase: AuthUserUseCase

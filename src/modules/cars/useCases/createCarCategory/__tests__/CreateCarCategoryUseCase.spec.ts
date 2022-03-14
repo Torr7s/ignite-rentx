@@ -1,8 +1,7 @@
-import { AppError } from '../../../../../errors/app.error'
+import { AppError } from '@errors/app.error';
 
-import { CreateCarCategoryUseCase } from '../CreateCarCategoryUseCase';
-
-import { CarCategoriesRepositoryInMemory } from '../../../repositories/in-memory/CarCategoriesRepositoryInMemory';
+import { CreateCarCategoryUseCase } from '@modules/cars/useCases/createCarCategory/CreateCarCategoryUseCase';
+import { CarCategoriesRepositoryInMemory } from '@modules/cars/repositories/in-memory/CarCategoriesRepositoryInMemory';
 
 let carCategoriesRepositoryInMemory: CarCategoriesRepositoryInMemory
 let createCarCategoryUseCase: CreateCarCategoryUseCase
