@@ -1,10 +1,12 @@
 import 'reflect-metadata';
 import 'express-async-errors';
-
-import '@shared/infra/typeorm';
 import '@shared/container';
 
-import { app } from '../../../app'
+import { app } from 'app';
+
+import createConnection from '@shared/infra/typeorm';
+
+createConnection()
 
 app.listen(3333, () => {
   console.log(
