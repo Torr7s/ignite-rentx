@@ -2,9 +2,9 @@ import { verify } from 'jsonwebtoken';
 
 import { NextFunction, Request, Response } from 'express';
 
-import { UsersRepository } from '../../../../modules/users/infra/repositories/UsersRepository';
+import { AppError } from '@shared/errors/app.error';
 
-import { AppError } from '../../../errors/app.error';
+import { UsersRepository } from '@modules/users/infra/repositories/UsersRepository';
 
 interface IPayload {
   sub: string;
