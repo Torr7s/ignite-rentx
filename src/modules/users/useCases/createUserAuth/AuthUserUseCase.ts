@@ -57,7 +57,7 @@ class AuthUserUseCase {
       token,
       userData: {
         name: userData.name,
-        email: userData.password
+        email: userData.email
       }
     }
 
