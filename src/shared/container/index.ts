@@ -1,13 +1,13 @@
 import { container } from 'tsyringe';
 
 import { ICarsRepository } from '@modules/cars/repositories/CarsInterface';
-import { ICarCategoriesRepository } from '@modules/cars/repositories/CarCategoriesInterface';
-import { ICarSpecificationsRepository } from '@modules/cars/repositories/CarSpecificationsInterface';
+import { ICategoriesRepository } from '@modules/cars/repositories/CategoriesInterface';
+import { ISpecificationsRepository } from '@modules/cars/repositories/SpecificationsInterface';
 import { IUsersRepository } from '@modules/users/repositories/UsersInterface';
 
 import { CarsRepository } from '@modules/cars/infra/typeorm/repositories/CarsRepository';
-import { CarCategoriesRepository } from '@modules/cars/infra/typeorm/repositories/CarCategoriesRepository';
-import { CarSpecificationsRepository } from '@modules/cars/infra/typeorm/repositories/CarSpecificationsRepository';
+import { CategoriesRepository } from '@modules/cars/infra/typeorm/repositories/CategoriesRepository';
+import { SpecificationsRepository } from '@modules/cars/infra/typeorm/repositories/SpecificationsRepository';
 import { UsersRepository } from '@modules/users/infra/repositories/UsersRepository';
 
 container.registerSingleton<ICarsRepository>(
@@ -15,14 +15,14 @@ container.registerSingleton<ICarsRepository>(
   CarsRepository
 )
 
-container.registerSingleton<ICarCategoriesRepository>(
-  'CarCategoriesRepository',
-  CarCategoriesRepository
+container.registerSingleton<ICategoriesRepository>(
+  'CategoriesRepository',
+  CategoriesRepository
 )
 
-container.registerSingleton<ICarSpecificationsRepository>(
-  'CarSpecificationsRepository',
-  CarSpecificationsRepository
+container.registerSingleton<ISpecificationsRepository>(
+  'SpecificationsRepository',
+  SpecificationsRepository
 )
 
 container.registerSingleton<IUsersRepository>(
