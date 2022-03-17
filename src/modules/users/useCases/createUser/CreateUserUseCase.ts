@@ -6,13 +6,13 @@ import { UserEntity } from '@modules/users/infra/typeorm/entities/UserEntity';
 import { ICreateUserDto } from '@modules/users/dtos/CreateUserDto';
 import { IUsersRepository } from '@modules/users/repositories/UsersInterface';
 
-import { AppError } from '@shared/errors/app.error';
+import { AppError } from '@shared/errors';
 
 @injectable()
 class CreateUserUseCase {
   constructor(
     @inject('UsersRepository')
-    private _usersRepository: IUsersRepository
+    private _repository: IUsersRepository
   ) { }
 
   async perform({
@@ -21,7 +21,7 @@ class CreateUserUseCase {
     password,
     driver_license
   }: ICreateUserDto): Promise<void> {
-    const userData: UserEntity = await this._usersRepository.findByEmail(email)
+    const userData: UserEntity = await this._repository.findByEmail(email)
   
     if (userData) {
       throw new AppError(
@@ -31,7 +31,7 @@ class CreateUserUseCase {
     
     const hashedPassword = await hash(password, 8)
 
-    await this._usersRepository.create({
+    await this._repository.create({
       name,
       email,
       password: hashedPassword,

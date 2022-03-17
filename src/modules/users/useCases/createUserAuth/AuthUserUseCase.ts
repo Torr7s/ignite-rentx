@@ -7,7 +7,7 @@ import { UserEntity } from '@modules/users/infra/typeorm/entities/UserEntity';
 
 import { IUsersRepository } from '@modules/users/repositories/UsersInterface';
 
-import { AppError } from '@shared/errors/app.error';
+import { AppError } from '@shared/errors';
 
 interface IAuthUserRequest {
   email: string;
@@ -26,11 +26,11 @@ interface IAuthUserResponse {
 class AuthUserUseCase {
   constructor(
     @inject('UsersRepository')
-    private _usersRepository: IUsersRepository
+    private _repository: IUsersRepository
   ) { }
 
   async perform({ email, password }: IAuthUserRequest): Promise<IAuthUserResponse> {
-    const userData: UserEntity = await this._usersRepository.findByEmail(email)
+    const userData: UserEntity = await this._repository.findByEmail(email)
 
     if (!userData) {
       throw new AppError(

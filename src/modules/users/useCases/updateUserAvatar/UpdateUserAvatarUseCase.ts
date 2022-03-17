@@ -13,17 +13,17 @@ interface IUpdateUserAvatarRequest {
 class UpdateUserAvatarUseCase {
   constructor(
     @inject('UsersRepository')
-    private _usersRepository: IUsersRepository
+    private _repository: IUsersRepository
   ) { }
 
   async perform({ user_id, avatar_file }: IUpdateUserAvatarRequest): Promise<void> {
-    const userData = await this._usersRepository.findById(user_id)
+    const userData = await this._repository.findById(user_id)
 
     if (userData) await deleteFile(`./tmp/avatar/${userData.avatar}`)
 
     userData.avatar = avatar_file
 
-    await this._usersRepository.updateAvatar(user_id, avatar_file)
+    await this._repository.updateAvatar(user_id, avatar_file)
   }
 }
 
