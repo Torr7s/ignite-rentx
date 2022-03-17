@@ -1,5 +1,3 @@
-import { AppError } from '@shared/errors/app.error';
-
 import { CarEntity } from '@modules/cars/infra/typeorm/entities/CarEntity';
 import { CarsRepositoryInMemory } from '@modules/cars/repositories/in-memory/CarsRepositoryInMemory';
 
