@@ -5,7 +5,7 @@ import { router } from './shared/infra/http/routes';
 
 import express, { NextFunction, Request, Response } from 'express';
 
-import { AppError } from '@shared/errors/app.error';
+import { AppError } from '@shared/errors';
 
 const app = express()
 

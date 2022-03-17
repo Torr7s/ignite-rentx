@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { AppError } from '@shared/errors/app.error';
-
 import { UserEntity } from '@modules/users/infra/typeorm/entities/UserEntity';
 import { UsersRepository } from '@modules/users/infra/repositories/UsersRepository';
+
+import { AppError } from '@shared/errors';
 
 export async function AdminMiddleware(request: Request, response: Response, next: NextFunction): Promise<void> {
   const { user_id } = request
