@@ -3,7 +3,7 @@ import csvParse from 'csv-parse';
 
 import { inject, injectable } from 'tsyringe';
 
-import { ICarCategoriesRepository } from '@modules/cars/repositories/CarCategoriesInterface';
+import { ICategoriesRepository } from '@modules/cars/repositories/CategoriesInterface';
 
 interface IImportCarCategory {
   name: string;
@@ -11,10 +11,10 @@ interface IImportCarCategory {
 }
 
 @injectable()
-class ImportCarCategoriesUseCase {
+class ImportCategoriesUseCase {
   constructor(
-    @inject('CarCategoriesRepository')
-    private _categoriesRepository: ICarCategoriesRepository
+    @inject('CategoriesRepository')
+    private _repository: ICategoriesRepository
   ) { }
 
   loadCategories(file: Express.Multer.File): Promise<IImportCarCategory[]> {
@@ -50,10 +50,10 @@ class ImportCarCategoriesUseCase {
     categories.forEach(async (category) => {
       const { name, description } = category
 
-      const categoryData = await this._categoriesRepository.findByName(name)
+      const categoryData = await this._repository.findByName(name)
 
       if (!categoryData) {
-        await this._categoriesRepository.create({
+        await this._repository.create({
           name,
           description
         })
@@ -62,4 +62,4 @@ class ImportCarCategoriesUseCase {
   }
 }
 
-export { ImportCarCategoriesUseCase }
+export { ImportCategoriesUseCase }
