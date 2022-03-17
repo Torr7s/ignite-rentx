@@ -13,11 +13,11 @@ interface IListAvailableCarsRequest {
 class ListAvailableCarsUseCase {
   constructor(
     @inject('CarsRepository')
-    private _carsRepository: ICarsRepository
+    private _repository: ICarsRepository
   ) { }
 
   async perform({ name, brand, category_id }: IListAvailableCarsRequest): Promise<CarEntity[]> { 
-    const carsData: CarEntity[] = await this._carsRepository.findAvailableCars(
+    const carsData: CarEntity[] = await this._repository.findAvailableCars(
       name, 
       brand, 
       category_id

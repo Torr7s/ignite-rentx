@@ -1,9 +1,9 @@
 import { injectable, inject } from 'tsyringe';
 
-import { AppError } from '@shared/errors/app.error';
-
 import { ICarsRepository } from '@modules/cars/repositories/CarsInterface';
 import { CarEntity } from '@modules/cars/infra/typeorm/entities/CarEntity';
+
+import { AppError } from '@shared/errors';
 
 interface ICreateCarRequest {
   name: string;
@@ -19,7 +19,7 @@ interface ICreateCarRequest {
 class CreateCarUseCase {
   constructor(
     @inject('CarsRepository')
-    private _carsRepository: ICarsRepository
+    private _repository: ICarsRepository
   ) { }
   async perform({
     name,
@@ -30,13 +30,13 @@ class CreateCarUseCase {
     brand,
     category_id
   }: ICreateCarRequest): Promise<CarEntity> {
-    const carExists: CarEntity = await this._carsRepository.findByLicensePlate(license_plate)
+    const carData: CarEntity = await this._repository.findByLicensePlate(license_plate)
   
-    if (carExists) {
+    if (carData) {
       throw new AppError('Car already exists!')
     }
 
-    const newCarData: CarEntity = await this._carsRepository.create({
+    const newCarData: CarEntity = await this._repository.create({
       name,
       description,
       daily_rate,
