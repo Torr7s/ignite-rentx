@@ -1,19 +1,19 @@
 import { Router } from 'express';
 
 import { userRouter } from './users.routes';
-import { authUserRouter } from './auth-user.routes';
+import { authRouter } from './auth.routes';
 
 import { carRouter } from './cars.routes';
-import { carCategoryRouter } from './car-categories.routes';
-import { carSpecificationRouter } from './car-specifications.routes';
+import { categoryRouter } from './categories.routes';
+import { specificationRouter } from './specifications.routes';
 
 const router = Router()
 
 router.use('/api/users', userRouter)
-router.use(authUserRouter)
+router.use(authRouter)
 
 router.use('/api/cars', carRouter)
-router.use('/api/cars/categories', carCategoryRouter)
-router.use('/api/cars/specifications', carSpecificationRouter)
+router.use('/api/categories', categoryRouter)
+router.use('/api/specifications', specificationRouter)
 
 export { router }
