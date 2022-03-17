@@ -1,6 +1,6 @@
 import { getRepository, Repository } from 'typeorm';
 
-import { CarEntity } from '../entities/CarEntity';
+import { CarEntity } from '@modules/cars/infra/typeorm/entities/CarEntity';
 import { ICreateCarDto } from '@modules/cars/dtos/CreateCarDto';
 import { ICarsRepository } from '@modules/cars/repositories/CarsInterface';
 
