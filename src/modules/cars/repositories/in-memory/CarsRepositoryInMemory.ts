@@ -12,7 +12,9 @@ class CarsRepositoryInMemory implements ICarsRepository {
     license_plate,
     fine_amount,
     brand,
-    category_id
+    category_id,
+    specifications,
+    id
   }: ICreateCarDto): Promise<CarEntity> {
     const newCarData: CarEntity = new CarEntity()
 
@@ -23,18 +25,14 @@ class CarsRepositoryInMemory implements ICarsRepository {
       license_plate,
       fine_amount,
       brand,
-      category_id
+      category_id,
+      specifications,
+      id
     })
 
     this.cars.push(newCarData)
 
     return newCarData
-  }
-
-  async findByLicensePlate(license_plate: string): Promise<CarEntity> {
-    const carsData: CarEntity = this.cars.find((car) => car.license_plate === license_plate)
-
-    return carsData
   }
 
   async findAvailableCars(
@@ -54,6 +52,18 @@ class CarsRepositoryInMemory implements ICarsRepository {
     })
 
     return availableCarsData
+  }
+
+  async findByLicensePlate(license_plate: string): Promise<CarEntity> {
+    const carsData: CarEntity = this.cars.find((car) => car.license_plate === license_plate)
+
+    return carsData
+  }
+
+  async findById(car_id: string): Promise<CarEntity> {
+    const carData: CarEntity = this.cars.find((car) => car.id === car_id)
+
+    return carData
   }
 }
 
