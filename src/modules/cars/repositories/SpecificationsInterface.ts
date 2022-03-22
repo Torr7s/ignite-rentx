@@ -6,8 +6,9 @@ interface ICreateSpecificationEntity {
 }
 
 interface ISpecificationsRepository {
-  create({ name, description }: ICreateSpecificationEntity): Promise<void>;
+  create({ name, description }: ICreateSpecificationEntity): Promise<SpecificationEntity>;
   findByName(name: string): Promise<SpecificationEntity>;
+  findByIds(ids: string[]): Promise<SpecificationEntity[]>;
 }
 
 export { ICreateSpecificationEntity, ISpecificationsRepository }
