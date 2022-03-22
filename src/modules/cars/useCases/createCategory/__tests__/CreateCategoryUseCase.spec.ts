@@ -40,5 +40,6 @@ describe('Create category', () => {
     })
       .rejects
       .toBeInstanceOf(AppError)
+      .catch(() => { })
   })
 })
