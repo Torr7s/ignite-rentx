@@ -52,6 +52,7 @@ describe('Create car', () => {
     })
       .rejects
       .toBeInstanceOf(AppError)
+      .catch(() => { })
   })
 
   it('should not be able to create a car with available true by default', async () => {
