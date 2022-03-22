@@ -5,7 +5,7 @@ import { ISpecificationsRepository } from '@modules/cars/repositories/Specificat
 
 import { AppError } from '@shared/errors';
 
-interface ISpecificationRequest {
+interface ICreateSpecificationRequest {
   name: string;
   description: string;
 }
@@ -17,14 +17,10 @@ class CreateSpecificationUseCase {
     private _repository: ISpecificationsRepository
   ) { }
 
-  async perform({ name, description }: ISpecificationRequest): Promise<void> {
+  async perform({ name, description }: ICreateSpecificationRequest): Promise<void> {
     const specificationData: SpecificationEntity = await this._repository.findByName(name)
 
-    if (specificationData) {
-      throw new AppError(
-        'Specification already exists!'
-      )
-    }
+    if (specificationData) throw new AppError('Specification already exists!')
 
     await this._repository.create({
       name,

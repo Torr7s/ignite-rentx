@@ -5,7 +5,7 @@ import { inject, injectable } from 'tsyringe';
 
 import { ICategoriesRepository } from '@modules/cars/repositories/CategoriesInterface';
 
-interface IImportCarCategory {
+interface IImportCarCategoryRequest {
   name: string;
   description: string;
 }
@@ -17,9 +17,9 @@ class ImportCategoriesUseCase {
     private _repository: ICategoriesRepository
   ) { }
 
-  loadCategories(file: Express.Multer.File): Promise<IImportCarCategory[]> {
+  loadCategories(file: Express.Multer.File): Promise<IImportCarCategoryRequest[]> {
     return new Promise((resolve, reject) => {
-      const categories: IImportCarCategory[] = []
+      const categories: IImportCarCategoryRequest[] = []
       const stream = fs.createReadStream(file.path)
 
       const parseFile = csvParse()
@@ -45,7 +45,7 @@ class ImportCategoriesUseCase {
   }
 
   async perform(file: Express.Multer.File): Promise<void> {
-    const categories: IImportCarCategory[] = await this.loadCategories(file)
+    const categories: IImportCarCategoryRequest[] = await this.loadCategories(file)
 
     categories.forEach(async (category) => {
       const { name, description } = category

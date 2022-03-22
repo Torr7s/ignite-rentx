@@ -5,7 +5,7 @@ import { ICategoriesRepository } from '@modules/cars/repositories/CategoriesInte
 
 import { AppError } from '@shared/errors';
 
-interface ICategoryRequest {
+interface ICreateCategoryRequest {
   name: string;
   description: string;
 }
@@ -17,14 +17,10 @@ class CreateCategoryUseCase {
     private _repository: ICategoriesRepository
   ) { }
 
-  async perform({ name, description }: ICategoryRequest): Promise<void> { 
+  async perform({ name, description }: ICreateCategoryRequest): Promise<void> { 
     const categoryData: CategoryEntity = await this._repository.findByName(name)
 
-    if (categoryData) {
-      throw new AppError(
-        'Category already exists!'
-      )
-    }
+    if (categoryData) throw new AppError('Category already exists!')
   
     await this._repository.create({ name, description })
   }

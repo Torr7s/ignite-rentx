@@ -32,9 +32,7 @@ class CreateCarUseCase {
   }: ICreateCarRequest): Promise<CarEntity> {
     const carData: CarEntity = await this._repository.findByLicensePlate(license_plate)
   
-    if (carData) {
-      throw new AppError('Car already exists!')
-    }
+    if (carData) throw new AppError('Car already exists!')
 
     const newCarData: CarEntity = await this._repository.create({
       name,
