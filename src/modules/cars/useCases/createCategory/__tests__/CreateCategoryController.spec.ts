@@ -29,8 +29,6 @@ describe('Create Category Controller', () => {
         '${id}', 'admin', 'admin@rentx.com.br', '${password}', 'XXXXXXX', true, 'now()'
       )`
     )
-
-    console.log(connection)
   })
 
   afterAll(async () => {
