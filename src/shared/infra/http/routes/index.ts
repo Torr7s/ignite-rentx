@@ -11,7 +11,7 @@ import { specificationRouter } from './specifications.routes';
 const router = Router()
 
 router.use('/api/users', userRouter)
-router.use(authRouter)
+router.use('/api', authRouter)
 
 router.use('/api/cars', carRouter)
 router.use('/api/rentals', rentalRouter)
