@@ -16,21 +16,10 @@ async function create(): Promise<void> {
 
   await connection.query(
     `INSERT INTO USERS(
-      id, 
-      name,
-      email,
-      password,
-      driver_license,
-      admin,
-      created_at      
-    ) VALUES (
-      '${id}',
-      'admin',
-      'admin@rentx.com.br',
-      '${password}',
-      'XXXXXXX',
-      true,
-      'now()'
+      id, name, email, password, driver_license, admin, created_at      
+    ) 
+    VALUES (
+      '${id}', 'admin', 'admin@rentx.com.br', '${password}', 'XXXXXXX', true, 'now()'
     )`
   )
 
