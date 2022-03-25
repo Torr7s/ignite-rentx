@@ -1,7 +1,7 @@
 import { CarEntity } from '@modules/cars/infra/typeorm/entities/CarEntity';
 import { CarsRepositoryInMemory } from '@modules/cars/repositories/in-memory/CarsRepositoryInMemory';
 
-import { ListAvailableCarsUseCase } from '../ListAvailableCarsUseCase';
+import { ListAvailableCarsUseCase } from '@modules/cars/useCases/listAvailableCars/ListAvailableCarsUseCase';
 
 let listAvailableCarsUseCase: ListAvailableCarsUseCase
 let carsRepositoryInMemory: CarsRepositoryInMemory
