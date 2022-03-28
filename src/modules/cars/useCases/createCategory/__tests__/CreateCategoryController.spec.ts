@@ -1,5 +1,3 @@
-/* Integrations tests */
-
 import { app } from '@shared/infra/http/app';
 
 import { hash } from 'bcrypt';
@@ -19,21 +17,16 @@ describe('Create Category Controller', () => {
     await connection.runMigrations()
 
     const id = uuid()
-    const password = await hash('admin', 9)
+    const password = await hash('adminpassword', 9)
 
     await connection.query(
       `INSERT INTO USERS(
         id, name, email, password, driver_license, admin, created_at      
       ) 
       VALUES (
-        '${id}', 'admin', 'admin@rentx.com.br', '${password}', 'XXXXXXX', true, 'now()'
+        '${id}', 'useradmin', 'admin@rentx.com.br', '${password}', 'XXXXXXX', true, 'now()'
       )`
     )
-  })
-
-  afterAll(async () => {
-    await connection.dropDatabase()
-    await connection.close()
   })
 
   it('should be able to create a new category', async () => {
@@ -41,7 +34,7 @@ describe('Create Category Controller', () => {
       .post('/api/login')
       .send({
         email: 'admin@rentx.com.br',
-        password: 'admin'
+        password: 'adminpassword'
       })
 
     const { token } = responseToken.body
@@ -57,5 +50,33 @@ describe('Create Category Controller', () => {
       })
 
     expect(response.status).toBe(201)
+  })
+
+  it('should not be able to create a new category when name already exists', async () => {
+    const responseToken = await request(app)
+      .post('/api/login')
+      .send({
+        email: 'admin@rentx.com.br',
+        password: 'adminpassword'
+      })
+
+    const { token } = responseToken.body
+
+    const response: Response = await request(app)
+      .post('/api/categories')
+      .send({
+        name: 'Test category',
+        description: 'Teste category desc'
+      })
+      .set({
+        Authorization: `Bearer ${token}`
+      })
+
+    expect(response.status).toBe(400)
+  })
+
+  afterAll(async () => {
+    await connection.dropDatabase()
+    await connection.close()
   })
 })
