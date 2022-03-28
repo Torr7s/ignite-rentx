@@ -1,3 +1,5 @@
+import '@shared/container';
+
 import swaggerUI from 'swagger-ui-express';
 import swaggerFile from '../../../swagger.json';
 
