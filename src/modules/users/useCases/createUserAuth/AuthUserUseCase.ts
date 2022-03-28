@@ -32,21 +32,11 @@ class AuthUserUseCase {
   async perform({ email, password }: IAuthUserRequest): Promise<IAuthUserResponse> {
     const userData: UserEntity = await this._repository.findByEmail(email)
 
-    if (!userData) {
-      throw new AppError(
-        'Invalid credentials!',
-          401
-      )
-    }
+    if (!userData) throw new AppError('Invalid credentials!', 401)
 
     const validPassword = await compare(password, userData.password)
 
-    if (!validPassword) {
-      throw new AppError(
-        'Invalid credentials!',
-          401
-      )
-    }
+    if (!validPassword) throw new AppError('Invalid credentials!', 401)
 
     const token = sign({}, `${process.env.MD5_HASH}`, {
       subject: userData.id,

@@ -23,11 +23,7 @@ class CreateUserUseCase {
   }: ICreateUserDto): Promise<void> {
     const userData: UserEntity = await this._repository.findByEmail(email)
   
-    if (userData) {
-      throw new AppError(
-        'User already exists!'
-      )
-    }
+    if (userData) throw new AppError('User already exists!')
     
     const hashedPassword = await hash(password, 8)
 

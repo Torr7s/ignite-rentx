@@ -15,12 +15,7 @@ async function AuthUserMiddleware(request: Request, response: Response, next: Ne
 
   const authHeaderToken = request.headers.authorization
 
-  if (!authHeaderToken) {
-    throw new AppError(
-      'Invalid token!',
-        401
-    )
-  }
+  if (!authHeaderToken) throw new AppError('Invalid token!', 401)
 
   const [, token] = authHeaderToken.split(' ')
 
@@ -29,21 +24,13 @@ async function AuthUserMiddleware(request: Request, response: Response, next: Ne
 
     const userData = await _usersRepository.findById(user_id)
 
-    if (!userData) {
-      throw new AppError(
-        'User does not exists!',
-          401
-      )
-    }
+    if (!userData) throw new AppError('User does not exists!', 401)
 
     request.user_id = user_id
 
     return next()
   } catch (error) {
-    throw new AppError(
-      'Invalid token!',
-        401
-    )
+    throw new AppError('Invalid token!', 401)
   }
 }
 
