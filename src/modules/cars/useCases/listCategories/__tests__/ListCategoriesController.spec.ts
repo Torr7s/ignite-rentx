@@ -31,7 +31,7 @@ describe('List categories', () => {
 
   it('should be able to list all categories', async () => {
     const responseToken = await request(app)
-      .post('/api/login')
+      .post('/api')
       .send({
         email: 'admin@rentx.com.br',
         password: 'adminpassword'
