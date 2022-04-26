@@ -1,6 +1,6 @@
 import { CarEntity } from '@modules/cars/infra/typeorm/entities/CarEntity';
 import { ICarsRepository } from '../CarsInterface';
-import { ICreateCarDto } from '@modules/cars/dtos/CreateCarDto';
+import { ICreateCarDto } from '@modules/cars/domain/dtos/CreateCarDto';
 
 class CarsRepositoryInMemory implements ICarsRepository {
   private cars: CarEntity[] = []
@@ -64,6 +64,12 @@ class CarsRepositoryInMemory implements ICarsRepository {
     const carData: CarEntity = this.cars.find((car) => car.id === car_id)
 
     return carData
+  }
+
+  async updateAvailability(id: string, available: boolean): Promise<void> {
+    const carDataIndex = this.cars.findIndex((car) => car.id === id)
+
+    this.cars[carDataIndex].available = available
   }
 }
 
