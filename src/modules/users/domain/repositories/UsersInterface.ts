@@ -1,5 +1,5 @@
 import { UserEntity } from '@modules/users/infra/typeorm/entities/UserEntity';
-import { ICreateUserDto } from '@modules/users/dtos/CreateUserDto';
+import { ICreateUserDto } from '@modules/users/domain/dtos/CreateUserDto';
 
 interface IUsersRepository {
   create(data: ICreateUserDto): Promise<void>;
