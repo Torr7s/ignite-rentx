@@ -1,8 +1,8 @@
 import { getRepository, Repository } from 'typeorm';
 
 import { CarEntity } from '@modules/cars/infra/typeorm/entities/CarEntity';
-import { ICarsRepository } from '@modules/cars/repositories/CarsInterface';
-import { ICreateCarDto } from '@modules/cars/dtos/CreateCarDto';
+import { ICarsRepository } from '@modules/cars/domain/repositories/CarsInterface';
+import { ICreateCarDto } from '@modules/cars/domain/dtos/CreateCarDto';
 
 class CarsRepository implements ICarsRepository {
   private _carsRepository: Repository<CarEntity>
@@ -86,6 +86,18 @@ class CarsRepository implements ICarsRepository {
     const carData: CarEntity = await this._carsRepository.findOne({ license_plate })
 
     return carData
+  }
+
+  async updateAvailability(id: string, available: boolean): Promise<void> {
+    await this._carsRepository
+      .createQueryBuilder()
+      .update()
+      .set({ available })
+      .where('id = :id')
+      .setParameters({ id })
+      .execute()
+
+    /* UPDATE cars SET available = 'true' WHERE id = :id */
   }
 }
 
