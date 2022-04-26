@@ -1,8 +1,8 @@
 import { getRepository, Repository } from 'typeorm';
 
 import { RentalEntity } from '../entities/RentalEntity';
-import { IRentalsRepository } from '@modules/rentals/repositories/RentalsInterface';
-import { ICreateRentalDto } from '@modules/rentals/dtos/CreateRentalDto';
+import { IRentalsRepository } from '@modules/rentals/domain/repositories/RentalsInterface';
+import { ICreateRentalDto } from '@modules/rentals/domain/dtos/CreateRentalDto';
 
 class RentalsRepository implements IRentalsRepository {
   private _rentalsRepository: Repository<RentalEntity>

@@ -1,7 +1,7 @@
 import { AppError } from '@shared/errors';
 
 import { CarEntity } from '@modules/cars/infra/typeorm/entities/CarEntity';
-import { CarsRepositoryInMemory } from '@modules/cars/repositories/in-memory/CarsRepositoryInMemory';
+import { CarsRepositoryInMemory } from '@modules/cars/domain/repositories/in-memory/CarsRepositoryInMemory';
 
 import { CreateCarUseCase } from '../CreateCarUseCase';
 

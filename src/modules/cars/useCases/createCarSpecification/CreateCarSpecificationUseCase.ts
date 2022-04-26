@@ -3,8 +3,8 @@ import { inject, injectable } from 'tsyringe';
 import { CarEntity } from '@modules/cars/infra/typeorm/entities/CarEntity';
 import { SpecificationEntity } from '@modules/cars/infra/typeorm/entities/SpecificationEntity';
 
-import { ICarsRepository } from '@modules/cars/repositories/CarsInterface';
-import { ISpecificationsRepository } from '@modules/cars/repositories/SpecificationsInterface';
+import { ICarsRepository } from '@modules/cars/domain/repositories/CarsInterface';
+import { ISpecificationsRepository } from '@modules/cars/domain/repositories/SpecificationsInterface';
 
 import { AppError } from '@shared/errors';
 

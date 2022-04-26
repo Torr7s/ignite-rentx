@@ -5,7 +5,7 @@ import { inject, injectable } from 'tsyringe';
 
 import { UserEntity } from '@modules/users/infra/typeorm/entities/UserEntity';
 
-import { IUsersRepository } from '@modules/users/repositories/UsersInterface';
+import { IUsersRepository } from '@modules/users/domain/repositories/UsersInterface';
 
 import { AppError } from '@shared/errors';
 

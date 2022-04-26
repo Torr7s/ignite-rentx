@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 
 import { UserEntity } from '@modules/users/infra/typeorm/entities/UserEntity';
-import { UsersRepository } from '@modules/users/infra/repositories/UsersRepository';
+import { UsersRepository } from '@modules/users/infra/typeorm/repositories/UsersRepository';
 
 import { AppError } from '@shared/errors';
 

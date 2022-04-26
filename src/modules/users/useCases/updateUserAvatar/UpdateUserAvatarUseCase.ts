@@ -1,6 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 
-import { IUsersRepository } from '@modules/users/repositories/UsersInterface';
+import { IUsersRepository } from '@modules/users/domain/repositories/UsersInterface';
 
 import { deleteFile } from '@utils/file.util';
 

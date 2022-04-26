@@ -3,8 +3,8 @@ import { AppError } from '@shared/errors';
 import { CreateUserUseCase } from '@modules/users/useCases/createUser/CreateUserUseCase'
 
 import { AuthUserUseCase, IAuthUserResponse } from '@modules/users/useCases/createUserAuth/AuthUserUseCase'
-import { UsersRepositoryInMemory } from '@modules/users/repositories/in-memory/UsersRepositoryInMemory'
-import { ICreateUserDto } from '@modules/users/dtos/CreateUserDto'
+import { UsersRepositoryInMemory } from '@modules/users/domain/repositories/in-memory/UsersRepositoryInMemory'
+import { ICreateUserDto } from '@modules/users/domain/dtos/CreateUserDto'
 
 let usersRepositoryInMemory: UsersRepositoryInMemory
 let authUserUseCase: AuthUserUseCase

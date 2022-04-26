@@ -5,8 +5,8 @@ import { SpecificationEntity } from '@modules/cars/infra/typeorm/entities/Specif
 
 import { CreateCarSpecificationUseCase } from '../CreateCarSpecificationUseCase';
 
-import { CarsRepositoryInMemory } from '@modules/cars/repositories/in-memory/CarsRepositoryInMemory';
-import { SpecificationsRepositoryInMemory } from '@modules/cars/repositories/in-memory/SpecificationsRepositoryInMemory';
+import { CarsRepositoryInMemory } from '@modules/cars/domain/repositories/in-memory/CarsRepositoryInMemory';
+import { SpecificationsRepositoryInMemory } from '@modules/cars/domain/repositories/in-memory/SpecificationsRepositoryInMemory';
 
 let createCarSpecificationUseCase: CreateCarSpecificationUseCase
 

@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 
 import { CarEntity } from '@modules/cars/infra/typeorm/entities/CarEntity';
-import { ICarsRepository } from '@modules/cars/repositories/CarsInterface';
+import { ICarsRepository } from '@modules/cars/domain/repositories/CarsInterface';
 
 interface IListAvailableCarsRequest {
   name?: string;

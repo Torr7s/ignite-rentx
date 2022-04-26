@@ -1,5 +1,5 @@
 import { CarEntity } from '@modules/cars/infra/typeorm/entities/CarEntity';
-import { CarsRepositoryInMemory } from '@modules/cars/repositories/in-memory/CarsRepositoryInMemory';
+import { CarsRepositoryInMemory } from '@modules/cars/domain/repositories/in-memory/CarsRepositoryInMemory';
 
 import { ListAvailableCarsUseCase } from '@modules/cars/useCases/listAvailableCars/ListAvailableCarsUseCase';
 
