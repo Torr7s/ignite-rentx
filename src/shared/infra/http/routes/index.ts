@@ -1,21 +1,23 @@
 import { Router } from 'express';
 
-import { userRouter } from './users.routes';
-import { authRouter } from './auth.routes';
+import { carRouter } from './cars/cars.routes';
+import { categoryRouter } from './cars/categories.routes';
+import { specificationRouter } from './cars/specifications.routes';
 
-import { carRouter } from './cars.routes';
-import { rentalRouter } from './rental.routes';
-import { categoryRouter } from './categories.routes';
-import { specificationRouter } from './specifications.routes';
+import { authRouter } from './users/auth.routes';
+import { userRouter } from './users/users.routes';
+
+import { rentalRouter } from './rentals/rental.routes';
 
 const router = Router()
+
+router.use('/api/cars', carRouter)
+router.use('/api/categories', categoryRouter)
+router.use('/api/specifications', specificationRouter)
 
 router.use('/api/users', userRouter)
 router.use('/api', authRouter)
 
-router.use('/api/cars', carRouter)
 router.use('/api/rentals', rentalRouter)
-router.use('/api/categories', categoryRouter)
-router.use('/api/specifications', specificationRouter)
 
 export { router }

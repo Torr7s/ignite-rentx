@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { AuthUserMiddleware } from '../middlewares/auth-user.middleware';
+import { AuthUserMiddleware } from '../../middlewares/auth-user.middleware';
 
 import { CreateRentalController } from '@modules/rentals/useCases/createRental/CreateRentalController';
 
