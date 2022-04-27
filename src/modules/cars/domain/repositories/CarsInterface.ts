@@ -8,7 +8,7 @@ interface ICarsRepository {
     brand?: string,
     category_id?: string
   ): Promise<CarEntity[]>;
-  findById(car_id: string): Promise<CarEntity>;
+  findById(id: string): Promise<CarEntity>;
   findByLicensePlate(license_plate: string): Promise<CarEntity>;
   updateAvailability(id: string, available: boolean): Promise<void>;
 }
