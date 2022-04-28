@@ -11,7 +11,7 @@ class CreateCategoryController {
 
     await createCategoryUseCase.perform({ name, description })
 
-    return response.status(201).send()
+    return response.sendStatus(201)
   }
 }
 
