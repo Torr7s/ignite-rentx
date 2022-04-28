@@ -13,31 +13,24 @@ let connection: Connection
 describe('Create Category Controller', () => {
   beforeAll(async () => {
     connection = await createConnection()
-
     await connection.runMigrations()
 
     const id = uuid()
     const password = await hash('adminpassword', 9)
 
     await connection.query(
-      `INSERT INTO USERS(
-        id, name, email, password, driver_license, admin, created_at      
-      ) 
-      VALUES (
-        '${id}', 'useradmin', 'admin@rentx.com.br', '${password}', 'XXXXXXX', true, 'now()'
-      )`
+      `INSERT INTO USERS(id, name, email, password, driver_license, admin, created_at) 
+      VALUES ('${id}', 'useradmin', 'admin@rentx.com.br', '${password}', 'XXXXXXX', true, 'now()')`
     )
   })
 
   it('should be able to create a new category', async () => {
-    const responseToken = await request(app)
-      .post('/api/login')
-      .send({
-        email: 'admin@rentx.com.br',
-        password: 'adminpassword'
-      })
+    const responseToken = await request(app).post('/api/login').send({
+      email: 'admin@rentx.com.br',
+      password: 'adminpassword'
+    })
 
-    const { token } = responseToken.body
+    const { body: { token } } = responseToken
 
     const response: Response = await request(app)
       .post('/api/categories')
@@ -53,14 +46,12 @@ describe('Create Category Controller', () => {
   })
 
   it('should not be able to create a new category when name already exists', async () => {
-    const responseToken = await request(app)
-      .post('/api/login')
-      .send({
-        email: 'admin@rentx.com.br',
-        password: 'adminpassword'
-      })
+    const responseToken = await request(app).post('/api/login').send({
+      email: 'admin@rentx.com.br',
+      password: 'adminpassword'
+    })
 
-    const { token } = responseToken.body
+    const { body: { token } } = responseToken
 
     const response: Response = await request(app)
       .post('/api/categories')

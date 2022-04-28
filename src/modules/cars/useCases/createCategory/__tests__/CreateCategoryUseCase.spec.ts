@@ -28,18 +28,17 @@ describe('Create category', () => {
   })
 
   it('should not be able to create a new category when name already exists', async () => {
-    expect(async () => {
-      const categoryData = {
-        name: 'Category test',
-        description: 'Category description test'
-      }
+    const categoryData = {
+      name: 'Category test',
+      description: 'Category description test'
+    }
 
-      await createCategoryUseCase.perform(categoryData)
+    await createCategoryUseCase.perform(categoryData)
 
-      await createCategoryUseCase.perform(categoryData)
-    })
+    await expect(createCategoryUseCase.perform(categoryData))
       .rejects
-      .toBeInstanceOf(AppError)
-      .catch(() => { })
+      .toEqual(
+        new AppError('Category already exists!')
+      )
   })
 })

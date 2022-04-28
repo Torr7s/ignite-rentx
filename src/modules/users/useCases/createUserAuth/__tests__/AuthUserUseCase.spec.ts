@@ -38,33 +38,37 @@ describe('Authenticate user', () => {
   })
 
   it('should not be able to authenticate an non-existent user', async () => {
-    expect(async () => {
-      await authUserUseCase.perform({
+    await expect(
+      authUserUseCase.perform({
         email: 'fake@gmail.com',
         password: '1234'
       })
-    })
+    )
       .rejects
-      .toBeInstanceOf(AppError)
+      .toEqual(
+        new AppError('Invalid credentials!', 401)
+      )
   })
 
   it('should not be able to authenticate an user with incorret password', async () => {
-    expect(async () => {
-      const userData: ICreateUserDto = {
-        name: 'User 2',
-        email: 'usertest2@gmail.com',
-        password: 'test1234',
-        driver_license: '09999',
-      }
+    const userData = {
+      name: 'User 2',
+      email: 'usertest2@gmail.com',
+      password: 'test1234',
+      driver_license: '09999',
+    }
 
-      await createUserUseCase.perform(userData)
+    await createUserUseCase.perform(userData)
 
-      await authUserUseCase.perform({
+    await expect(
+      authUserUseCase.perform({
         email: userData.email,
-        password: 'incorrect_password'
+        password: 'test'
       })
-    })
+    )
       .rejects
-      .toBeInstanceOf(AppError)
+      .toEqual(
+        new AppError('Invalid credentials!', 401)
+      )
   })
 })
