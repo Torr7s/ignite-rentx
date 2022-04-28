@@ -53,6 +53,12 @@ class RentalsRepository implements IRentalsRepository {
 
     return openRentalByUser
   }
+
+  async findUserRentals(user_id: string): Promise<RentalEntity[]> {
+    const rentalData = await this._rentalsRepository.find({ user_id })
+
+    return rentalData
+  }
 }
 
 export { RentalsRepository }
