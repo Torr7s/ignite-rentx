@@ -9,11 +9,43 @@
     }
   },
   "paths": {
-    "/car/categories": {
+    "/api/login": {
+      "post": {
+        "tags": ["Authentication"],
+        "summary": "User authentication",
+        "description": "Authenticate an user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Invalid credentials"
+          }
+        }
+      }
+    },
+    "/categories": {
       "get": {
         "tags": ["Categories"],
-        "summary": "List all car categories",
-        "description": "List all car categories",
+        "summary": "List all categories",
+        "description": "List all categories",
         "responses": {
           "200": {
             "description": "Success",
@@ -42,6 +74,11 @@
         "tags": ["Categories"],
         "summary": "Create car category",
         "description": "Create a new car category",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -73,11 +110,11 @@
         }
       }
     },
-    "/car/categories/import": {
+    "/categories/import": {
       "post": {
         "tags": ["Categories"],
-        "summary": "Import car categories",
-        "description": "Import new car categories from file",
+        "summary": "Import categories",
+        "description": "Import new categories from file",
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -100,11 +137,11 @@
         }
       }
     },
-    "/car/specifications": {
+    "/specifications": {
       "post": {
         "tags": ["Specifications"],
-        "summary": "Create car specification",
-        "description": "Create a new car specification",
+        "summary": "Create specification",
+        "description": "Create a new specification",
         "requestBody": {
           "content": {
             "application/json": {
@@ -137,5 +174,14 @@
         }
       }
     }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    } 
   }
 }
