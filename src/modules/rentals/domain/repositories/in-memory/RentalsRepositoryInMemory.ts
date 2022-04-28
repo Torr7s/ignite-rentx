@@ -20,6 +20,12 @@ class RentalsRepositoryInMemory implements IRentalsRepository {
     return rentalData
   }
 
+  async findById(id: string): Promise<RentalEntity> {
+    const rentalData = this.rentals.find((rental) => rental.id === id)
+
+    return rentalData
+  }
+
   async findRentalByCarId(car_id: string): Promise<RentalEntity> {
     const rentalData: RentalEntity = this.rentals.find((rental) => {
       return rental.car_id === car_id &&
@@ -36,6 +42,12 @@ class RentalsRepositoryInMemory implements IRentalsRepository {
     })
 
     return userData
+  }
+
+  async findUserRentals(user_id: string): Promise<RentalEntity[]> {
+    const userRentalsData = this.rentals.filter((rental) => rental.user_id === user_id)
+
+    return userRentalsData
   }
 }
 
