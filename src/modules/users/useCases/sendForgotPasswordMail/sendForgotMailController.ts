@@ -7,6 +7,12 @@ class SendForgotMailController {
   
   async handle(request: Request, response: Response) {
     const sendForgotMailUseCase = container.resolve(SendForgotMailUseCase)
+
+    const { email } = request.body
+
+    await sendForgotMailUseCase.perform(email)
+
+    return response.sendStatus(200)
   }
 }
 
